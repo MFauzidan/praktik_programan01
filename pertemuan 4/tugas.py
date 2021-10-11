@@ -10,7 +10,7 @@ pembagian = (int(nilaiA) / int(nilaiB))
 modulus = (int(nilaiA) % int(nilaiB))
 
 
-print("hasil penjumlahan dari " + str(nilaiA) + " + " + str(nilaiB) + " = " + str(penjumlahan) )
+prinpt("hasil penjumlahan dari " + str(nilaiA) + " + " + str(nilaiB) + " = " + str(penjumlahan) )
 print("hasil pengurangan dari " + str(nilaiA) + " - " + str(nilaiB) + " = " + str(pengurangan) )
 print("hasil perkalian dari " + str(nilaiA) + " * " + str(nilaiB) + " = " + str(perkalian) )
 print("hasil pembagian dari " + str(nilaiA) + " / " + str(nilaiB) + " = " + str(pembagian) )
