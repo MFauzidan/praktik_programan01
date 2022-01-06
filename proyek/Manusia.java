@@ -1,7 +1,7 @@
 public class Manusia {
     protected double tinggiBadan;
 
-    public void setTinggiBadang(double tinggiBadan) {
+    public void setTinggiBadan(double tinggiBadan) {
         this.tinggiBadan = tinggiBadan;
     }
 

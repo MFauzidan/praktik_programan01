@@ -4,12 +4,12 @@ public class Tugas {
     public static void main(String[] args){
         Scanner scanner = new Scanner(System.in);
         System.out.print("masukan nilai A : ");
-        double nilaiA = scanner.nextDouble();
+        int nilaiA = scanner.nextInt();
          
         System.out.print("masukan nilai B : ");
-        double nilaiB = scanner.nextDouble();
+        int nilaiB = scanner.nextInt();
 
-        double penjumlahan = nilaiA + nilaiB;
+        int penjumlahan = nilaiA + nilaiB;
         double pengurangan = nilaiA - nilaiB;
         double perkalian = nilaiA * nilaiB;
         double pembagian = nilaiA / nilaiB;
@@ -21,6 +21,9 @@ public class Tugas {
         System.out.println("hasil pembagian   dari " + nilaiA + " / " + nilaiB + " = " + pembagian);
         System.out.println("hasil modulus     dari " + nilaiA + " % " + nilaiB + " = " + modulus);
 
+
+        System.out.println("hasil penjumlahan dari " + nilaiA + " + " + nilaiB + " = " + penjumlahan);
+       
     }
     
 }

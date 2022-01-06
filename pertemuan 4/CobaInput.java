@@ -4,14 +4,14 @@ public class CobaInput {
     public static void main(String[] args){
         Scanner scanner = new Scanner(System.in);
         System.out.print("masukan nilai A : ");
-        double nilai A = scanner.nextDouble();
-        
+        int nilaiA = scanner.nextInt();
+         
         System.out.print("masukan nilai B : ");
-        double nilai B = scanner.nextDouble();
+        int nilaiB = scanner.nextInt();
 
-        double penjumlahan = nilaiA + nilaiB;
+        int penjumlahan = nilaiA + nilaiB;
 
-        System.out.println("nilai hasil penjumlahan dari " + nilai A + "+" nilai B + " = " + penjumlahan);
+        System.out.println("hasil penjumlahan dari " + nilaiA + " + " + nilaiB + " = " + penjumlahan);
 
     }
 }

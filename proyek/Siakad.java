@@ -1,13 +1,13 @@
 import java.util.Scanner;
+
 public class Siakad {
     Mahasiswa[] mahasiswa = new Mahasiswa[1000];
-    private int jumlahData = 0;
-
+    
+    int jumlahData = 0;
     public static void main(String[] args) {
-        
-        Siakad siakad = new Siakad();
+        Siakad.java siakad = new Siakad.java();
         int menu = 0;
-        while (menu!=9) {
+        while (menu!=7) {
             menu = tampilanMenu();
             if (menu==1) {
                 siakad.lihatData();
@@ -18,36 +18,39 @@ public class Siakad {
             } else if (menu==4) {
                 siakad.rerataIPK();
             } else if (menu==5) {
-                siakad.editNama();
+                siakad.hapusNIM();
             } else if (menu==6) {
-                siakad.hapusData();
+                siakad.editData();
             }
         }
     }
 
-    private static int tampilanMenu() {
+    public static int tampilanMenu() {
         Scanner scan = new Scanner(System.in);
-        System.out.println("..Menu..");
-        System.out.println("1. Lihat Data");
-        System.out.println("2. Tambah Data");
-        System.out.println("3. Cari Data");
+        System.out.println("Selamat Datang di Sistem Informasi Akademik UNY!");
+        System.out.println("--------------------------------------");
+        System.out.println("                 MENU                 ");
+        System.out.println("--------------------------------------");
+        System.out.println("1. Lihat data");
+        System.out.println("2. Tambah data");
+        System.out.println("3. Cari data");
         System.out.println("4. Rerata IPK");
-        System.out.println("5. Edit Nama");
-        System.out.println("6. Hapus Data");
-        System.out.println("9. Keluar");
-        System.out.print("Pilih menu = ");
+        System.out.println("5. Hapus NIM");
+        System.out.println("6. Edit Data");
+        System.out.println("7. Keluar");
+        System.out.println("Silakan pilih menu");
         int menu = scan.nextInt();
-        return menu;
-        
+        return menu;   
     }
+
 
     private void lihatData() {
         if (jumlahData==0) {
-            System.out.println("Belum ada data");
+            System.out.println("Data kosong");
         } else {
-            System.out.println("Berikut data mahasiswa");
+            System.out.println("Data tersedia");
             for (int i=0; i<jumlahData;i++) {
-                mahasiswa[i].getDetail();
+                this.mahasiswa[i].getDetail();
             }
         }
         
@@ -59,12 +62,16 @@ public class Siakad {
         String nim = scan.nextLine();
         System.out.print("Masukan nama mahasiswa = ");
         String nama = scan.nextLine();
+        System.out.print("Masukan alamat mahasiswa = ");
+        String alamat = scan.nextLine();
         System.out.print("Masukan IPK mahasiswa = ");
         double ipk = scan.nextDouble();
         System.out.print("Masukan Tinggi Badan mahasiswa = ");
         double tinggi = scan.nextDouble();
-        Mahasiswa inputMahasiswa = new Mahasiswa(nim, nama, ipk);
-        inputMahasiswa.setTinggiBadang(tinggi);
+        System.out.print("Masukan semester mahasiswa = ");
+        int semester = scan.nextInt();
+        Mahasiswa inputMahasiswa = new Mahasiswa(nim, nama, alamat, ipk, semester);
+        inputMahasiswa.setTinggiBadan(tinggi);
         mahasiswa[jumlahData] = inputMahasiswa;
         jumlahData++;
         lihatData();
@@ -72,11 +79,11 @@ public class Siakad {
 
     public void cariDataByNIM() {
         Scanner scan = new Scanner(System.in);
-        System.out.print("Masukan NIM mahasiswa yang akan dicari = ");
+        System.out.print("Masukkan NIM mahasiswa yang akan dicari = ");
         String nim = scan.nextLine();
         int index = getIndexByNIM(nim);
         if (index==-1) {
-            System.out.println("NIM yang anda cari tidak ketemu");
+            System.out.println("NIM yang Anda cari tidak ditemukan");
         } else {
             mahasiswa[index].getDetail();
         }
@@ -90,37 +97,13 @@ public class Siakad {
         }
         return -1;
     }
-
-    public void editNama() {
-        Scanner scan = new Scanner(System.in);
-        System.out.print("Masukan NIM mahasiswa yang akan diedit = ");
-        String nim = scan.nextLine();
-        int index = getIndexByNIM(nim);
-        if (index==-1) {
-            System.out.println("NIM yang anda akan edit tidak ketemu");
-        } else {
-            mahasiswa[index].getDetail();
-            System.out.print("Masukan Nama mahasiswa yang baru = ");
-            String nama = scan.nextLine();
-            mahasiswa[index].setNama(nama);
-            mahasiswa[index].getDetail();
-        }
-    }
-
-    public void hapusData() {
-        Scanner scan = new Scanner(System.in);
-        System.out.print("Masukan NIM mahasiswa dari data yang akan dihapus = ");
-        String nim = scan.nextLine();
-        int index = getIndexByNIM(nim);
-        if (index==-1) {
-            System.out.println("Data yang anda akan hapus tidak ketemu");
-        } else {
-            for (int i = index; i<jumlahData; i++) {
-                mahasiswa[i] = mahasiswa[i+1];
+    public int getIndexByNama(String nama) {
+        for (int i=0; i<jumlahData; i++) {
+            if (mahasiswa[i].getNama().equals(nama)) {
+                return i;
             }
-            jumlahData--;
-            lihatData();
         }
+        return -1;
     }
 
     public void rerataIPK() {
@@ -131,5 +114,54 @@ public class Siakad {
         double rerata = total/jumlahData;
         System.out.println("Rerata IPK Mahasiswa = "+ rerata);
     }
+
+    public void hapusNIM() {
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Hapus NIM mahasiswa dari data yang akan Anda hapus: ");
+        String nim = scan.nextLine();
+        int index = getIndexByNIM(nim);
+        if (index==-1) {
+            System.out.println("Data yang akan Anda hapus tidak ditemukan: ");
+        } 
+        else {
+            for (int i=index; i<jumlahData; i++) {
+                mahasiswa[i] = mahasiswa[i+1];
+            }
+            jumlahData--;
+            lihatData();
+        }
+    }
+
+   public void editData() {
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Masukkan NIM mahasiswa yang akan Anda edit");
+        String nim = scan.nextLine();
+        int index = getIndexByNIM(nim);
+        if (index==-1) {
+            System.out.println("Nama yang Anda akan edit tidak ditemukan");
+        } else {
+            mahasiswa[index].getDetail();
+            System.out.print("Masukan Nama mahasiswa yang baru = ");
+            String Nama = scan.nextLine();
+            mahasiswa[index].setNama(Nama);
+            System.out.print("Masukan NIM mahasiswa yang baru = ");
+            String nimString = scan.nextLine();
+            mahasiswa[index].setNIM(nim);
+            System.out.print("Masukan alamat mahasiswa yang baru = ");
+            String alamat = scan.nextLine();
+            mahasiswa[index].setAlamat(alamat);
+            System.out.print("Masukan IPK mahasiswa yang baru = ");
+            double IPK = scan.nextDouble();
+            mahasiswa[index].setIPK(IPK);
+            System.out.print("Masukan tinggi badan mahasiswa yang baru = ");
+            double tinggiBadan = scan.nextDouble();
+            mahasiswa[index].setTinggiBadan(tinggiBadan);
+            System.out.print("Masukan semester mahasiswa yang baru = ");
+            int semester = scan.nextInt();
+            mahasiswa[index].setSemester(semester);
+            mahasiswa[index].getDetail();
+
+        }
     
-}
+    }
+}    
