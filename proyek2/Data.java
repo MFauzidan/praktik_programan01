@@ -5,14 +5,16 @@ public class Data extends SiakadFinal {
     private String fakultas;
     private String semester;
     private Double ipk;
+    private String namaortu;
 
-    public Data(String nim, String nama, String prodi, String fakultas, String semester, Double ipk) {
+    public Data(String nim, String nama, String prodi, String fakultas, String semester, Double ipk, String namaortu) {
         this.nim = nim;
         this.nama = nama;
         this.prodi = prodi;
         this.fakultas = fakultas;
         this.semester = semester;
         this.ipk = ipk;
+        this.namaortu = namaortu;
     }
 
     public void setNIM(String nim) {
@@ -62,10 +64,17 @@ public class Data extends SiakadFinal {
     public double getIPK() {
         return this.ipk;
     }
+    public void setnamaortu(String namaortu) {
+        this.prodi = namaortu;
+    }
+
+    public String getnamaortu() {
+        return this.namaortu;
+    }
 
     public void getDetail() {
 
-        System.out.printf("%7s %17s %10s %10s %10s %14s", this.nim, this.nama.toUpperCase(), this.prodi, this.fakultas.toUpperCase(), this.semester.toUpperCase(), String.valueOf(this.ipk));
+        System.out.printf("%7s %17s %10s %10s %10s %14s %16s", this.nim, this.nama.toUpperCase(), this.prodi, this.fakultas.toUpperCase(), this.semester.toUpperCase(), String.valueOf(this.ipk), this.namaortu);
         System.out.println();
     }
 }

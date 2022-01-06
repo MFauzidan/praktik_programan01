@@ -29,7 +29,7 @@ public class SiakadFinal {
             }else if (menu==7) {
                 siakadFinal.editNIM();
             }else if (menu==8) {
-                siakadFinal.rerataIPK();
+                siakadFinal.rerataIPK();    
             }else if (menu==9) {
                 siakadFinal.hapusData();
             }
@@ -49,8 +49,8 @@ public class SiakadFinal {
         System.out.println("6. Edit Fakultas");
         System.out.println("7. Edit NIM");
         System.out.println("8. Rerata IPK");
-        System.out.println("9. Hapus Data");
-        System.out.println("10.Keluar");
+        System.out.println("10.Hapus Data");
+        System.out.println("11.Keluar");
         System.out.print("Pilihlah Menu = ");
         int menu = scan.nextInt();
         return menu;
@@ -61,9 +61,9 @@ public class SiakadFinal {
             System.out.println("Data Belum Tersedia");
         }else {
             System.out.println("Berikut Data Mahasiswa");
-            System.out.printf("%7s %17s %15s %20s %15s %10s", "NIM", "NAMA", "PRODI", "FAKULTAS", "SEMESTER", "IPK" );
+            System.out.printf("%7s %17s %15s %20s %15s %10s %16s", "NIM", "NAMA", "PRODI", "FAKULTAS", "SEMESTER", "IPK", "Nama Ortu" );
             System.out.println();
-            System.out.println("----------------------------------------------------------------------------------------");
+            System.out.println("-----------------------------------------------------------------------------------------------------");
             for (int i=0; i<jumlahData; i++) {
                 data[i].getDetail();
             }
@@ -82,6 +82,8 @@ public class SiakadFinal {
         String fakultas = scan.nextLine();
         System.out.print("Masukkan Semester Mahasiswa = ");
         String semester = scan.nextLine();
+        System.out.print("Masukkan Nama Ortu = ");
+        String namaortu = scan.nextLine();
         double ipk = 0;
         try {
             System.out.print("Masukkan IPK Mahasiswa = ");
@@ -89,7 +91,7 @@ public class SiakadFinal {
         }catch (Exception e) {
             System.out.println("Anda harus memasukan bilangan desimal dengan menggunakan tanda titik. Silahkan edit IPK anda setelah input data");
         }
-        Data inputMahasiswa = new Data(nim, nama, prodi, fakultas, semester, ipk);
+        Data inputMahasiswa = new Data(nim, nama, prodi, fakultas, semester, ipk, namaortu);
         data[jumlahData] = inputMahasiswa;
         jumlahData++; 
         lihatData();
